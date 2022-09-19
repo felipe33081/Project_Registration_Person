@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Registration.WebApi.Controllers.Core;
 
-namespace Registration.WebApi.Controllers.Person
+namespace Registration.WebApi.Controllers.Account
 {
     public class PersonController : CoreController
     {

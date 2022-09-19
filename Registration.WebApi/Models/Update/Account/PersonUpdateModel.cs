@@ -1,11 +1,11 @@
 ﻿using Registration.Model;
 using Registration.Model.Enumerations;
-using Registration.WebApi.Models.Create.Core;
+using Registration.WebApi.Models.Update.Core;
 using System.ComponentModel.DataAnnotations;
 
-namespace Registration.WebApi.Models.Create.Person
+namespace Registration.WebApi.Models.Update.Account
 {
-    public class PersonCreateModel : BaseCreateModel
+    public class PersonUpdateModel : BaseUpdateModel
     {
         public string? Name { get; set; }
 

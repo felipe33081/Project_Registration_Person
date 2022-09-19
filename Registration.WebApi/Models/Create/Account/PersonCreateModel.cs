@@ -1,11 +1,11 @@
-﻿using Registration.Model.Enumerations;
-using Registration.Model;
-using Registration.WebApi.Models.Read.Core;
+﻿using Registration.Model;
+using Registration.Model.Enumerations;
+using Registration.WebApi.Models.Create.Core;
 using System.ComponentModel.DataAnnotations;
 
-namespace Registration.WebApi.Models.Read.Person
+namespace Registration.WebApi.Models.Create.Account
 {
-    public class PersonReadModel : BaseReadModel
+    public class PersonCreateModel : BaseCreateModel
     {
         public string? Name { get; set; }
 

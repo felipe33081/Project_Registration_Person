@@ -2,7 +2,7 @@
 using Registration.Model.Enumerations;
 using System.ComponentModel.DataAnnotations;
 
-namespace Registration.Model.Person
+namespace Registration.Model.Account
 {
     public class Person : BaseModel
     {

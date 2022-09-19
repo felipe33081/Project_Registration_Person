@@ -1,11 +1,11 @@
-﻿using Registration.Model;
-using Registration.Model.Enumerations;
-using Registration.WebApi.Models.Update.Core;
+﻿using Registration.Model.Enumerations;
+using Registration.Model;
+using Registration.WebApi.Models.Read.Core;
 using System.ComponentModel.DataAnnotations;
 
-namespace Registration.WebApi.Models.Update.Person
+namespace Registration.WebApi.Models.Read.Account
 {
-    public class PersonUpdateModel : BaseUpdateModel
+    public class PersonReadModel : BaseReadModel
     {
         public string? Name { get; set; }
 

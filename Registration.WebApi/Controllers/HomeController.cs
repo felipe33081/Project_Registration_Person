@@ -18,6 +18,11 @@ namespace Registration.WebApi.Controllers
         {
             return View();
         }
+        
+        public IActionResult Registration()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
