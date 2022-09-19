@@ -1,4 +1,4 @@
-namespace Project_Registration_Person.Models
+namespace Registration.WebApi.Models
 {
     public class ErrorViewModel
     {

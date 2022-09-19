@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Project_Registration_Person.Models;
+using Registration.WebApi.Controllers.Core;
+using Registration.WebApi.Models;
 using System.Diagnostics;
 
-namespace Project_Registration_Person.Controllers
+namespace Registration.WebApi.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : CoreController
     {
         private readonly ILogger<HomeController> _logger;
 

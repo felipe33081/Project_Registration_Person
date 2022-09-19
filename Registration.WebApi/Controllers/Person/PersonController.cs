@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Registration.WebApi.Controllers.Core;
 
-namespace Project_Registration_Person.Controllers
+namespace Registration.WebApi.Controllers.Person
 {
-    public class PersonController : Controller
+    public class PersonController : CoreController
     {
         // GET: PersonController
         public ActionResult Index()
@@ -39,7 +39,7 @@ namespace Project_Registration_Person.Controllers
         }
 
         // GET: PersonController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Update(int id)
         {
             return View();
         }
@@ -47,7 +47,7 @@ namespace Project_Registration_Person.Controllers
         // POST: PersonController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Update(int id, IFormCollection collection)
         {
             try
             {
