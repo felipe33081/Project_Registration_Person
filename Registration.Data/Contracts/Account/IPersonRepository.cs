@@ -1,4 +1,5 @@
 ﻿using Registration.Data.Contracts.Core;
+using Registration.Model;
 using Registration.Model.Account;
 using System;
 using System.Collections.Generic;
@@ -10,12 +11,10 @@ namespace Registration.Data.Contracts.Account
 {
     public interface IPersonRepository : IRepositoryBase<Person>
     {
-        //Task<ListDataPagination<Person>> ListPerson(User User, string searchString, int page, int size, DateTimeOffset? initialDate, DateTimeOffset? finalDate, string orderBy, bool isDeleted);
+        Task<ListDataPagination<Person>> ListPersonAsync( string searchString, int page, int size, DateTimeOffset? initialDate, DateTimeOffset? finalDate, string orderBy);
 
-        //Task<Person> GetPersonAsync(User User, Guid PersonId);
+        Task<Person> GetPersonByIdAsync(Guid id);
 
-        Task AddUserPersonAsync(Person person);
-
-        //void RemoveUserPerson(UserPerson userPerson);
+        Task AddPersonAsync(Person person);
     }
 }

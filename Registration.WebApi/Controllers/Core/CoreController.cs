@@ -1,10 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Registration.WebApi.Common;
 using System.ComponentModel.DataAnnotations;
 
 namespace Registration.WebApi.Controllers.Core
 {
     public class CoreController : Controller
     {
+        protected BadRequestObjectResult LoggerBadRequest(Exception e, ILogger logger)
+        {
+            logger.LogWarning(e.ToString());
+            return new BadRequestObjectResult(new { errors = RandomHelpers.GetInnerException(e).Message });
+        }
+
         protected BadRequestObjectResult InvalidBusinessRules(IEnumerable<string> errors, string message = "")
         {
             if (!string.IsNullOrEmpty(message))

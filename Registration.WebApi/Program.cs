@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Registration.Data.Context;
-using Registration.WebApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
