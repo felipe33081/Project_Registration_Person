@@ -12,18 +12,5 @@ namespace Registration.Data.Context
         }
 
         public DbSet<Person> Person { get; set; }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-
-        //    var builder = new ConfigurationBuilder();
-        //    //builder.SetBasePath(Directory.GetCurrentDirectory());
-        //    //builder.AddJsonFile("appsettings.json");
-        //    IConfiguration Configuration = builder.Build();
-
-        //    optionsBuilder.UseNpgsql(
-        //        Configuration.GetConnectionString("POSTGRESQLCONNSTR_PostgreSQL"));
-        //    base.OnConfiguring(optionsBuilder);
-        //}
     }
 }
