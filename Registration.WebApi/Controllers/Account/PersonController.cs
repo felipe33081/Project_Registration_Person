@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Registration.Data.Context;
+using Registration.Model.Account;
 using Registration.WebApi.Models.Create.Account;
 using Registration.WebApi.Models.Update.Account;
 
@@ -50,16 +51,16 @@ namespace Registration.WebApi.Controllers.Account
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(PersonCreateModel personCreateModel)
+        public async Task<IActionResult> Create(Person person)
         {
             if (ModelState.IsValid)
             {
-                personCreateModel.Id = Guid.NewGuid();
-                _context.Add(personCreateModel);
+                person.Id = Guid.NewGuid();
+                _context.Add(person);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(personCreateModel);
+            return View(person);
         }
 
         // GET: Person/Edit/5
