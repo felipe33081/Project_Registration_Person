@@ -33,8 +33,4 @@
     <ProjectReference Include="..\Registration.Model\Registration.Model.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\Account\" />
-  </ItemGroup>
-
 </Project>
