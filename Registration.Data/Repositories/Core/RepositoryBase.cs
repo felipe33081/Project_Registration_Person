@@ -71,24 +71,5 @@ namespace Registration.Data.Repositories.Core
         {
             await Context.SaveChangesAsync();
         }
-
-        //public async Task AssignAsync(T obj, UserRef userId, GroupRef groupName, string tenantName)
-        //{
-        //    if (obj is not BaseModel)
-        //    {
-        //        throw new InvalidOperationException("Objeto não é um BaseModel");
-        //    }
-        //    var baseModel = obj as BaseModel;
-        //    Context.Set<T>().Attach(obj);
-        //    if (!string.IsNullOrEmpty(userId.UserId))
-        //        baseModel.OwnerUser = userId;
-        //    if (!string.IsNullOrEmpty(groupName.GroupId))
-        //        baseModel.OwnerGroup = groupName;
-
-        //    baseModel.TenantName = tenantName;
-        //    await Context.SaveChangesAsync();
-
-        //    return;
-        //}
     }
 }

@@ -12,6 +12,5 @@
         Task DeleteAsync(Guid id);
         Task<T> UpdateAsync(T obj);
         Task SaveChangesAsync();
-        //Task AssignAsync(T obj, UserRef userId, GroupRef groupName, string tenant);
     }
 }

@@ -10,8 +10,6 @@ namespace Registration.Data.Context
 
         public DbSet<Person> Person { get; set; }
         
-        public async Task MigrateAsync() => await base.Database.MigrateAsync();
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new PersonConfiguration());

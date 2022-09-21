@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using Registration.Data.Context;
+using Registration.WebApi.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddEntityFrameworkNpgsql()
+    .AddDbContext<PostgreSqlContext>(options =>
+    options.UseNpgsql("User ID=postgres;Password=postgres;Host=127.0.0.1;Port=5432;Database=postgres;Pooling=true"));
 
 var app = builder.Build();
 
