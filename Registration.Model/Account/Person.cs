@@ -28,15 +28,12 @@ namespace Registration.Model.Account
         [EnumDataType(typeof(Gender))]
         public Gender? Gender { get; set; }
 
-        public string? MothersName { get; set; }
-
-        public string? FathersName { get; set; }
-
-        public string? Occupation { get; set; }
-
         [EnumDataType(typeof(OccupationType))]
         public OccupationType? OccupationType { get; set; }
 
         public decimal? NetSalary { get; set; }
+
+        [Required]
+        public decimal? LimitCredit { get; set; }
     }
 }

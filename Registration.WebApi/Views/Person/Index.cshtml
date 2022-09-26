@@ -38,19 +38,13 @@
                 @Html.DisplayNameFor(model => model.Gender)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MothersName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FathersName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Occupation)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.OccupationType)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.NetSalary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LimitCredit)
             </th>
             <th></th>
         </tr>
@@ -83,19 +77,13 @@
                 @Html.DisplayFor(modelItem => item.Gender)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MothersName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FathersName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Occupation)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.OccupationType)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NetSalary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LimitCredit)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
