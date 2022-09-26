@@ -28,7 +28,7 @@ namespace Registration.Data.Repositories.Account
             if (!string.IsNullOrEmpty(searchString))
             {
                 searchString = searchString.ToLower().Trim();
-                query = query.Where(q => q.RegistrationNumber.Contains(searchString) ||
+                query = query.Where(q => q.TaxNumber.Contains(searchString) ||
                                          q.Name.ToLower().Contains(searchString));
             }
 

@@ -2,12 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using Registration.Data.Context;
 using Registration.Model.Account;
+using Registration.WebApi.Controllers.Core;
 using Registration.WebApi.Models.Create.Account;
 using Registration.WebApi.Models.Update.Account;
 
 namespace Registration.WebApi.Controllers.Account
 {
-    public class PersonController : Controller
+    public class PersonController : CoreController
     {
         private readonly PostgreSqlContext _context;
 
