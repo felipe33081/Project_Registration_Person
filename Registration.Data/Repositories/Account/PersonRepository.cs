@@ -15,12 +15,12 @@ namespace Registration.Data.Repositories.Account
         }
 
         public async Task<ListDataPagination<Person>> ListPersonAsync(
-            string searchString,
+            string? searchString,
             int page,
             int size,
             DateTimeOffset? initialDate,
             DateTimeOffset? finalDate,
-            string orderBy)
+            string? orderBy)
         {
             var query = Context.Person
                 .Where(q => !q.IsDeleted);
@@ -80,6 +80,7 @@ namespace Registration.Data.Repositories.Account
         public async Task AddPersonAsync(Person person)
         {
             await Context.AddAsync(person);
+            await Context.SaveChangesAsync();
         }
     }
 }

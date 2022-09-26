@@ -11,7 +11,7 @@ namespace Registration.Data.Contracts.Account
 {
     public interface IPersonRepository : IRepositoryBase<Person>
     {
-        Task<ListDataPagination<Person>> ListPersonAsync( string searchString, int page, int size, DateTimeOffset? initialDate, DateTimeOffset? finalDate, string orderBy);
+        Task<ListDataPagination<Person>> ListPersonAsync( string? searchString, int page, int size, DateTimeOffset? initialDate, DateTimeOffset? finalDate, string? orderBy);
 
         Task<Person> GetPersonByIdAsync(Guid id);
 

@@ -6,6 +6,7 @@ namespace Registration.Model.Account
 {
     public class Person : BaseModel
     {
+        [Required]
         public string? Name { get; set; }
 
         [Required]
