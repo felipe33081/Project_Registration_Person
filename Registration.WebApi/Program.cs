@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Registration.Data.Context;
+using Registration.Data.Contracts.Account;
+using Registration.Data.Repositories.Account;
 using Registration.WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,9 +14,18 @@ builder.Services.AddEntityFrameworkNpgsql()
         builder.Configuration.GetConnectionString("POSTGRESQLCONNSTR_PostgreSQL")
         ));
 
-var startup = new Startup(builder.Configuration);
+builder.Services.AddMvcCore().AddAuthorization().AddDataAnnotations();
+builder.Services.AddMemoryCache();
+builder.Services.AddCors(c =>
+{
+    c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+});
+builder.Services.AddDistributedMemoryCache();
 
-startup.ConfigureServices(builder.Services);
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddScoped<MapperProfile>();
+builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 
 var app = builder.Build();
 
