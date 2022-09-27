@@ -10,6 +10,9 @@ using Registration.WebApi.Models.Update.Account;
 
 namespace Registration.WebApi.Controllers.Account
 {
+    [ApiController]
+    [Route("[controller]")]
+    [Produces("application/json")]
     public class PersonController : CoreController
     {
         readonly IPersonRepository _personRepository;
@@ -79,7 +82,6 @@ namespace Registration.WebApi.Controllers.Account
         /// Cria um novo registro de pessoa
         /// </summary>
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [ProducesResponseType(typeof(Guid), 200)]
         public async Task<IActionResult> Create([FromBody] PersonCreateModel personCreateModel)
         {
@@ -103,7 +105,6 @@ namespace Registration.WebApi.Controllers.Account
         /// Atualiza um registro de pessoa
         /// </summary>
         [HttpPut("{id}")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(Guid id, [FromBody] PersonUpdateModel personUpdateModel)
         {
             if (!ModelState.IsValid)
@@ -128,7 +129,6 @@ namespace Registration.WebApi.Controllers.Account
         /// Exclui um registro de pessoa
         /// </summary>
         [HttpDelete("{id}")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(Guid id)
         {
             try

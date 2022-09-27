@@ -4,7 +4,7 @@
     {
         public Guid Id { get; set; }
 
-        public DateTimeOffset? UpdatedAt { get; set; }
+        public DateTimeOffset? UpdatedAt { get; set; } = DateTimeOffset.UtcNow;
 
         public string? UpdatedBy { get; set; }
 

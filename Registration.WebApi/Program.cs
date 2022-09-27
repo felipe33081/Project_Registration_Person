@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Registration.Data.Context;
+using Registration.WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,10 @@ builder.Services.AddEntityFrameworkNpgsql()
     .AddDbContext<PostgreSqlContext>(options => options.UseNpgsql(
         builder.Configuration.GetConnectionString("POSTGRESQLCONNSTR_PostgreSQL")
         ));
+
+var startup = new Startup(builder.Configuration);
+
+startup.ConfigureServices(builder.Services);
 
 var app = builder.Build();
 
@@ -33,3 +38,10 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+app.UseDeveloperExceptionPage();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});

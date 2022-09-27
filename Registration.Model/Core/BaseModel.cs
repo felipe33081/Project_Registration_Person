@@ -12,9 +12,9 @@ namespace Registration.Model.Core
 
         public virtual DateTimeOffset? UpdatedAt { get; set; } = DateTimeOffset.UtcNow;
 
-        public virtual string CreatedBy { get; set; }
+        public virtual string? CreatedBy { get; set; }
 
-        public virtual string UpdatedBy { get; set; }
+        public virtual string? UpdatedBy { get; set; }
 
         public virtual bool IsDeleted { get; set; } = false;
     }
