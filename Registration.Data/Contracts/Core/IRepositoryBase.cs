@@ -9,7 +9,7 @@
         Task<T> GetAsync(Guid id);
         Task<List<T>> ListAsync();
         Task DeleteAsync(T obj);
-        Task DeleteAsync(Guid id);
+        Task DeleteAsync(int id);
         Task<T> UpdateAsync(T obj);
         Task SaveChangesAsync();
     }

@@ -2,7 +2,7 @@
 {
     public class BaseReadModel
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public DateTimeOffset? CreatedAt { get; set; }
 

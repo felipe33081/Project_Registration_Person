@@ -1,20 +1,27 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Registration.Model.Core
 {
     public class BaseModel : IModel
     {
         [Key]
-        public virtual Guid Id { get; set; }
+        [Column("Código")]
+        public virtual int Id { get; set; }
 
         [Required]
+        [Column("Criado_Em")]
         public virtual DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
-
+        
+        [Column("Atualizado_Em")]
         public virtual DateTimeOffset? UpdatedAt { get; set; } = DateTimeOffset.UtcNow;
 
-        public virtual string? CreatedBy { get; set; }
+        [Column("Criado_Por")]
+        public virtual string? CreatedBy { get; set; } = "System";
 
-        public virtual string? UpdatedBy { get; set; }
+        [Column("Atualizado_Por")]
+        public virtual string? UpdatedBy { get; set; } = "System";
+
 
         public virtual bool IsDeleted { get; set; } = false;
     }

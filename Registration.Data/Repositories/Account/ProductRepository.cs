@@ -7,14 +7,14 @@ using Registration.Model.Account;
 
 namespace Registration.Data.Repositories.Account
 {
-    public class PersonRepository : RepositoryBase<Person>, IPersonRepository
+    public class ProductRepository : RepositoryBase<Product>, IProductRepository
     {
-        public PersonRepository(PostgreSqlContext context) : base(context)
+        public ProductRepository(PostgreSqlContext context) : base(context)
         {
 
         }
 
-        public async Task<ListDataPagination<Person>> ListPersonAsync(
+        public async Task<ListDataPagination<Product>> ListPersonAsync(
             string? searchString,
             int page,
             int size,
@@ -22,14 +22,14 @@ namespace Registration.Data.Repositories.Account
             DateTimeOffset? finalDate,
             string? orderBy)
         {
-            var query = Context.Person
+            var query = Context.Product
                 .Where(q => !q.IsDeleted);
 
             if (!string.IsNullOrEmpty(searchString))
             {
                 searchString = searchString.ToLower().Trim();
-                query = query.Where(q => q.TaxNumber.Contains(searchString) ||
-                                         q.Name.ToLower().Contains(searchString));
+                query = query.Where(q => q.Price.Contains(searchString) ||
+                                         q.Description.ToLower().Contains(searchString));
             }
 
             if (initialDate.HasValue)
@@ -55,7 +55,7 @@ namespace Registration.Data.Repositories.Account
                     break;
             }
 
-            var data = new ListDataPagination<Person>
+            var data = new ListDataPagination<Product>
             {
                 Page = page,
                 TotalItems = await query.CountAsync()
@@ -70,16 +70,15 @@ namespace Registration.Data.Repositories.Account
             return data;
         }
 
-        public async Task<Person> GetPersonByIdAsync(Guid id)
+        public async Task<Product> GetProductByIdAsync(int id)
         {
-            return await Context.Person
-                .Include(x => x.Address)
+            return await Context.Product
                 .SingleOrDefaultAsync(x => x.Id == id && !x.IsDeleted);
         }
 
-        public async Task AddPersonAsync(Person person)
+        public async Task AddProductAsync(Product product)
         {
-            await Context.AddAsync(person);
+            await Context.AddAsync(product);
             await Context.SaveChangesAsync();
         }
     }

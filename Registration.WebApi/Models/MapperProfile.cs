@@ -25,9 +25,9 @@ public class MapperProfile : Profile
 
         CreateMap<BaseModel, BaseReadModel>();
 
-        CreateMap<PersonCreateModel, Person>();
-        CreateMap<PersonUpdateModel, Person>();
-        CreateMap<Person, PersonReadModel>()
+        CreateMap<ProductCreateModel, Product>();
+        CreateMap<ProductUpdateModel, Product>();
+        CreateMap<Product, ProductReadModel>()
             .IncludeBase<BaseModel, BaseReadModel>();
 
         CreateMap<Address, AddressUpdateModel>();

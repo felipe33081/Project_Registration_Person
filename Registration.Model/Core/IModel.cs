@@ -2,7 +2,7 @@
 {
     public interface IModel
     {
-        Guid Id { get; set; }
+        int Id { get; set; }
 
         DateTimeOffset CreatedAt { get; set; }
 

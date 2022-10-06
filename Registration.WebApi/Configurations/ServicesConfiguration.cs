@@ -8,7 +8,7 @@ namespace Registration.WebApi.Configurations
         public static IServiceCollection ConfigureRepositories(this IServiceCollection services)
         {
             services
-                .AddScoped<IPersonRepository, PersonRepository>();
+                .AddScoped<IProductRepository, ProductRepository>();
 
             return services;
         }

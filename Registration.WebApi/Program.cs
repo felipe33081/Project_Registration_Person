@@ -25,7 +25,7 @@ builder.Services.AddDistributedMemoryCache();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<MapperProfile>();
-builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
 

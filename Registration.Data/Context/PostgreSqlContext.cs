@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Registration.Model.Account;
+using Registration.Model.Provider;
 
 namespace Registration.Data.Context
 {
@@ -11,6 +12,7 @@ namespace Registration.Data.Context
 
         }
 
-        public DbSet<Person> Person { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<Provider> Provider { get; set; }
     }
 }

@@ -53,7 +53,7 @@ namespace Registration.Data.Repositories.Core
             return;
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(int id)
         {
             Context.Set<T>().Remove(Context.Set<T>().Find(id));
             await Context.SaveChangesAsync();

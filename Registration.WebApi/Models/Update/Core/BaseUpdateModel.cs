@@ -2,7 +2,7 @@
 {
     public class BaseUpdateModel
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public DateTimeOffset? UpdatedAt { get; set; } = DateTimeOffset.UtcNow;
 

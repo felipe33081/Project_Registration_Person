@@ -2,7 +2,7 @@
 {
     public class BaseCreateModel
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
 
@@ -11,7 +11,7 @@
         public DateTimeOffset? UpdatedAt { get; set; }
 
         public string? UpdatedBy { get; set; }
-        
+
         public bool? IsDeleted { get; set; }
     }
 }
