@@ -6,7 +6,7 @@
 
         public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
 
-        public string? CreatedBy { get; set; }
+        public string? CreatedBy { get; set; } = "System";
 
         public DateTimeOffset? UpdatedAt { get; set; }
 

@@ -13,7 +13,7 @@ namespace Registration.WebApi.Models.Create.Account
         [Required]
         public string? TaxNumber { get; set; }
 
-        public Address? Address { get; set; }
+        public AddressCreateModel? Address { get; set; }
 
         [Required]
         public string? Email { get; set; }

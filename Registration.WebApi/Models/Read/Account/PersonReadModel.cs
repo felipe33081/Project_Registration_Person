@@ -2,6 +2,7 @@
 using Registration.Model;
 using Registration.WebApi.Models.Read.Core;
 using System.ComponentModel.DataAnnotations;
+using Registration.WebApi.Models.Create;
 
 namespace Registration.WebApi.Models.Read.Account
 {
@@ -11,7 +12,7 @@ namespace Registration.WebApi.Models.Read.Account
 
         public string? TaxNumber { get; set; }
 
-        public Address? Address { get; set; }
+        public AddressReadModel? Address { get; set; }
 
         public string? Email { get; set; }
 

@@ -11,7 +11,7 @@ namespace Registration.WebApi.Models.Update.Account
 
         public string? TaxNumber { get; set; }
 
-        public Address? Address { get; set; }
+        public AddressUpdateModel? Address { get; set; }
 
         public string? Email { get; set; }
 

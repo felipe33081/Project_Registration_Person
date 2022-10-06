@@ -1,6 +1,8 @@
+using Registration.WebApi.Models.Read.Core;
+
 namespace Registration.WebApi.Models.Read
 {
-    public class AddressReadModel
+    public class AddressReadModel : BaseReadModel
     {
         public string? AddressName { get; set; }
 
