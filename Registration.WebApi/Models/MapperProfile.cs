@@ -2,16 +2,20 @@ using AutoMapper;
 using Registration.Model;
 using Registration.Model.Account;
 using Registration.Model.Core;
+using Registration.Model.Provider;
 using Registration.WebApi.Common;
 using Registration.WebApi.Models.Create;
 using Registration.WebApi.Models.Create.Account;
 using Registration.WebApi.Models.Create.Core;
+using Registration.WebApi.Models.Create.Provider;
 using Registration.WebApi.Models.Read;
 using Registration.WebApi.Models.Read.Account;
 using Registration.WebApi.Models.Read.Core;
+using Registration.WebApi.Models.Read.Provider;
 using Registration.WebApi.Models.Update;
 using Registration.WebApi.Models.Update.Account;
 using Registration.WebApi.Models.Update.Core;
+using Registration.WebApi.Models.Update.Provider;
 
 public class MapperProfile : Profile
 {
@@ -28,6 +32,11 @@ public class MapperProfile : Profile
         CreateMap<ProductCreateModel, Product>();
         CreateMap<ProductUpdateModel, Product>();
         CreateMap<Product, ProductReadModel>()
+            .IncludeBase<BaseModel, BaseReadModel>();
+
+        CreateMap<ProviderCreateModel, Provider>();
+        CreateMap<ProviderUpdateModel, Provider>();
+        CreateMap<Provider, ProviderReadModel>()
             .IncludeBase<BaseModel, BaseReadModel>();
 
         CreateMap<Address, AddressUpdateModel>();

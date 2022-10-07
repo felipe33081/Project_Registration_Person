@@ -7,6 +7,6 @@ namespace Registration.Model.Enumerations
     /// </summary>
     public enum Category
     {
-        
+        Informatica = 0
     }
 }

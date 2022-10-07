@@ -1,6 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using Registration.Data.Context;
+using Registration.Data.Contracts;
 using Registration.Data.Contracts.Account;
+using Registration.Data.Repositories;
 using Registration.Data.Repositories.Account;
 using Registration.WebApi;
 
@@ -14,6 +17,12 @@ builder.Services.AddEntityFrameworkNpgsql()
         builder.Configuration.GetConnectionString("POSTGRESQLCONNSTR_PostgreSQL")
         ));
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Cadastro de Produtos", Version = "v1" });
+});
+
 builder.Services.AddMvcCore().AddAuthorization().AddDataAnnotations();
 builder.Services.AddMemoryCache();
 builder.Services.AddCors(c =>
@@ -26,8 +35,12 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<MapperProfile>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
 
 var app = builder.Build();
+
+app.UseSwaggerUI();
+app.UseSwagger(x => x.SerializeAsV2 = true);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -49,6 +62,13 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+app.UseCors(options =>
+{
+    options.WithOrigins("http://localhost:3000")
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+});
 
 app.UseDeveloperExceptionPage();
 

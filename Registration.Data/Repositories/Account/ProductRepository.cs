@@ -14,66 +14,15 @@ namespace Registration.Data.Repositories.Account
 
         }
 
-        public async Task<ListDataPagination<Product>> ListPersonAsync(
-            string? searchString,
-            int page,
-            int size,
-            DateTimeOffset? initialDate,
-            DateTimeOffset? finalDate,
-            string? orderBy)
+        public async Task<IEnumerable<Product>> GetProducts()
         {
-            var query = Context.Product
-                .Where(q => !q.IsDeleted);
-
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                searchString = searchString.ToLower().Trim();
-                query = query.Where(q => q.Price.Contains(searchString) ||
-                                         q.Description.ToLower().Contains(searchString));
-            }
-
-            if (initialDate.HasValue)
-            {
-                query = query.Where(q => q.CreatedAt >= initialDate);
-            }
-
-            if (finalDate.HasValue)
-            {
-                query = query.Where(q => q.CreatedAt <= finalDate);
-            }
-
-            switch (orderBy)
-            {
-                case "createdAt_DESC":
-                    query = query.OrderByDescending(t => t.CreatedAt);
-                    break;
-                case "createdAt_ASC":
-                    query = query.OrderBy(t => t.CreatedAt);
-                    break;
-                default:
-                    query = query.OrderByDescending(t => t.CreatedAt);
-                    break;
-            }
-
-            var data = new ListDataPagination<Product>
-            {
-                Page = page,
-                TotalItems = await query.CountAsync()
-            };
-            data.TotalPages = (int)Math.Ceiling((double)data.TotalItems / size);
-
-            data.Data = await query.Skip(size * page)
-                   .Take(size)
-                   .AsNoTracking()
-                   .ToListAsync();
-
-            return data;
+            return await Context.Product.ToListAsync();
         }
 
         public async Task<Product> GetProductByIdAsync(int id)
         {
             return await Context.Product
-                .SingleOrDefaultAsync(x => x.Id == id && !x.IsDeleted);
+                .SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task AddProductAsync(Product product)

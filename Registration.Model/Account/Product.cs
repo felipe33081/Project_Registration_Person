@@ -13,7 +13,7 @@ namespace Registration.Model.Account
 
         [Required]
         [Column("Preço")]
-        public string? Price { get; set; }
+        public double? Price { get; set; }
 
         [Column("Categoria")]
         [EnumDataType(typeof(Category))]

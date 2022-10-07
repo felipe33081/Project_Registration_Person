@@ -10,7 +10,7 @@ namespace Registration.WebApi.Models.Read.Account
     {
         public string? Description { get; set; }
 
-        public string? Price { get; set; }
+        public double? Price { get; set; }
 
         [EnumDataType(typeof(Category))]
         public Category? Category { get; set; }

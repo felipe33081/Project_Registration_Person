@@ -11,10 +11,8 @@ namespace Registration.Data.Contracts.Account
 {
     public interface IProductRepository : IRepositoryBase<Product>
     {
-        Task<ListDataPagination<Product>> ListPersonAsync( string? searchString, int page, int size, DateTimeOffset? initialDate, DateTimeOffset? finalDate, string? orderBy);
-
+        Task<IEnumerable<Product>> GetProducts();
         Task<Product> GetProductByIdAsync(int id);
-
         Task AddProductAsync(Product product);
     }
 }

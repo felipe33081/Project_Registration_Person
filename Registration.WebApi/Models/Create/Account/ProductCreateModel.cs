@@ -11,7 +11,7 @@ namespace Registration.WebApi.Models.Create.Account
         public string? Description { get; set; }
 
         [Required]
-        public string? Price { get; set; }
+        public double? Price { get; set; }
 
         [EnumDataType(typeof(Category))]
         public Category? Category { get; set; }

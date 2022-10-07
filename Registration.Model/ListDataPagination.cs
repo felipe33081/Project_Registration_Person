@@ -13,5 +13,10 @@ namespace Registration.Model
         public List<T> Data { get; set; }
 
         public string PaginationToken { get; set; } = null;
+
+        public static implicit operator ListDataPagination<T>(ListDataPagination<Provider.Provider> v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

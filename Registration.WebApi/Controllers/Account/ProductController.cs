@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Registration.Data.Contracts.Account;
-using Registration.Model;
 using Registration.Model.Account;
 using Registration.WebApi.Controllers.Core;
 using Registration.WebApi.Models.Create.Account;
@@ -15,62 +14,57 @@ namespace Registration.WebApi.Controllers.Account
     [Produces("application/json")]
     public class ProductController : CoreController
     {
-        readonly IProductRepository _personRepository;
+        readonly IProductRepository _productRepository;
         readonly IMapper _mapper;
         readonly ILogger<ProductController> _logger;
 
         public ProductController(
-            IProductRepository personRepository,
+            IProductRepository productRepository,
             IMapper mapper,
             ILogger<ProductController> logger)
         {
-            _personRepository = personRepository;
+            _productRepository = productRepository;
             _mapper = mapper;
             _logger = logger;
         }
 
         /// <summary>
-        /// Lista todas as pessoas inseridas anteriormente
+        /// Lista todos os produtos
         /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        [ProducesResponseType(typeof(ListDataPagination<ProductReadModel>), 200)]
-        public async Task<IActionResult> PersonListAsync([FromQuery] int page = 0, [FromQuery] int size = 15,
-            [FromQuery] string? searchString = null,
-            [FromQuery] DateTimeOffset? initialDate = null, [FromQuery] DateTimeOffset? finalDate = null,
-            [FromQuery] string? orderBy = null)
+        public async Task<ActionResult<IAsyncEnumerable<ProductReadModel>>> ProductListAsync()
         {
             try
             {
-                ListDataPagination<Product> listData = await _personRepository.ListPersonAsync(searchString, page, size, initialDate, finalDate, orderBy);
+                var products = await _productRepository.GetProducts();
 
-                var newData = new ListDataPagination<ProductReadModel>()
-                {
-                    Data = listData.Data.Select(c => _mapper.Map<ProductReadModel>(c)).ToList(),
-                    Page = page,
-                    TotalItems = listData.TotalItems,
-                    TotalPages = listData.TotalPages
-                };
-                return Ok(newData);
+                return Ok(products);
             }
             catch (Exception e)
             {
-                return LoggerBadRequest(e, _logger);
+                throw e;
             }
         }
 
+        /// <summary>
+        /// Acessa um registro de produto por Id(Código)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(ProductReadModel), 200)]
         public async Task<IActionResult> GetById(int id)
         {
             try
             {
-                var person = await _personRepository.GetProductByIdAsync(id);
-                if (person == null)
+                var product = await _productRepository.GetProductByIdAsync(id);
+                if (product == null)
                     return NotFound("Produto não encontrado");
 
-                var readPerson = _mapper.Map<ProductReadModel>(person);
+                var readProduct = _mapper.Map<ProductReadModel>(product);
 
-                return Ok(readPerson);
+                return Ok(readProduct);
             }
             catch (Exception e)
             {
@@ -79,21 +73,23 @@ namespace Registration.WebApi.Controllers.Account
         }
 
         /// <summary>
-        /// Cria um novo registro de pessoa
+        /// Cria um novo registro de um produto
         /// </summary>
+        /// <param name="productCreateModel"></param>
+        /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(Guid), 200)]
-        public async Task<IActionResult> Create([FromBody] ProductCreateModel personCreateModel)
+        public async Task<IActionResult> Create([FromBody] ProductCreateModel productCreateModel)
         {
             if (!ModelState.IsValid)
                 return NotFound("Modelo não é válido");
 
             try
             {
-                var person = _mapper.Map<Product>(personCreateModel);
-                await _personRepository.AddProductAsync(person);
+                var product = _mapper.Map<Product>(productCreateModel);
+                await _productRepository.AddProductAsync(product);
                 
-                return Ok(person.Id);
+                return Ok(product.Id);
             }
             catch (Exception e)
             {
@@ -102,20 +98,23 @@ namespace Registration.WebApi.Controllers.Account
         }
 
         /// <summary>
-        /// Atualiza um registro de pessoa
+        /// Atualiza um registro de um produto
         /// </summary>
+        /// <param name="id"></param>
+        /// <param name="productUpdateModel"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] ProductUpdateModel personUpdateModel)
+        public async Task<IActionResult> Update(int id, [FromBody] ProductUpdateModel productUpdateModel)
         {
             if (!ModelState.IsValid)
                 return NotFound("Modelo não é válido");
 
             try
             {
-                var person = await _personRepository.GetProductByIdAsync(id);
-                _mapper.Map(personUpdateModel, person);
+                var product = await _productRepository.GetProductByIdAsync(id);
+                _mapper.Map(productUpdateModel, product);
 
-                await _personRepository.SaveChangesAsync();
+                await _productRepository.SaveChangesAsync();
             }
             catch (Exception e)
             {
@@ -126,20 +125,20 @@ namespace Registration.WebApi.Controllers.Account
         }
 
         /// <summary>
-        /// Exclui um registro de pessoa
+        /// Exclui um registro de um produto
         /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                var person = await _personRepository.GetProductByIdAsync(id);
-                if (person == null)
+                var product = await _productRepository.GetProductByIdAsync(id);
+                if (product == null)
                     return NotFound("Produto não encontrado");
 
-                person.UpdatedAt = DateTimeOffset.UtcNow;
-                person.IsDeleted = true;
-                await _personRepository.SaveChangesAsync();
+                await _productRepository.DeleteAsync(product);
 
                 return NoContent();
             }
@@ -153,10 +152,10 @@ namespace Registration.WebApi.Controllers.Account
         {
             try
             {
-                var person = await _personRepository.ListAsync();
-                var hasPerson = person.Any(x => x.Id == id);
+                var product = await _productRepository.ListAsync();
+                var hasProduct = product.Any(x => x.Id == id);
 
-                return hasPerson;
+                return hasProduct;
             }
             catch (Exception e)
             {

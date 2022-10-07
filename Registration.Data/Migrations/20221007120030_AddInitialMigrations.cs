@@ -1,12 +1,11 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace Registration.Data.Migrations
 {
-    public partial class InitilMigration : Migration
+    public partial class AddInitialMigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -23,12 +22,7 @@ namespace Registration.Data.Migrations
                     UF = table.Column<int>(type: "integer", nullable: true),
                     District = table.Column<string>(type: "text", nullable: true),
                     Number = table.Column<string>(type: "text", nullable: true),
-                    Complement = table.Column<string>(type: "text", nullable: true),
-                    Criado_Em = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
-                    Atualizado_Em = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
-                    Criado_Por = table.Column<string>(type: "text", nullable: true),
-                    Atualizado_Por = table.Column<string>(type: "text", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
+                    Complement = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -42,13 +36,8 @@ namespace Registration.Data.Migrations
                     Código = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Descrição = table.Column<string>(type: "text", nullable: false),
-                    Preço = table.Column<string>(type: "text", nullable: false),
-                    Categoria = table.Column<int>(type: "integer", nullable: true),
-                    Criado_Em = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
-                    Atualizado_Em = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
-                    Criado_Por = table.Column<string>(type: "text", nullable: true),
-                    Atualizado_Por = table.Column<string>(type: "text", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
+                    Preço = table.Column<double>(type: "double precision", nullable: false),
+                    Categoria = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -63,12 +52,7 @@ namespace Registration.Data.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
                     RegistrationNumber = table.Column<string>(type: "text", nullable: false),
-                    AddressId = table.Column<int>(type: "integer", nullable: true),
-                    Criado_Em = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
-                    Atualizado_Em = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
-                    Criado_Por = table.Column<string>(type: "text", nullable: true),
-                    Atualizado_Por = table.Column<string>(type: "text", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
+                    AddressId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {

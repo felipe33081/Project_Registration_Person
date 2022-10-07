@@ -12,8 +12,8 @@ using Registration.Data.Context;
 namespace Registration.Data.Migrations
 {
     [DbContext(typeof(PostgreSqlContext))]
-    [Migration("20221006115143_InitilMigration")]
-    partial class InitilMigration
+    [Migration("20221007120030_AddInitialMigrations")]
+    partial class AddInitialMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,34 +37,15 @@ namespace Registration.Data.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("Categoria");
 
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("Criado_Em");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text")
-                        .HasColumnName("Criado_Por");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("Descrição");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Price")
+                    b.Property<double?>("Price")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasColumnType("double precision")
                         .HasColumnName("Preço");
-
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("Atualizado_Em");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("text")
-                        .HasColumnName("Atualizado_Por");
 
                     b.HasKey("Id");
 
@@ -89,19 +70,8 @@ namespace Registration.Data.Migrations
                     b.Property<string>("Complement")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("Criado_Em");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text")
-                        .HasColumnName("Criado_Por");
-
                     b.Property<string>("District")
                         .HasColumnType("text");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
 
                     b.Property<string>("Number")
                         .HasColumnType("text");
@@ -111,14 +81,6 @@ namespace Registration.Data.Migrations
 
                     b.Property<int?>("UF")
                         .HasColumnType("integer");
-
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("Atualizado_Em");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("text")
-                        .HasColumnName("Atualizado_Por");
 
                     b.Property<string>("ZipCode")
                         .HasColumnType("text");
@@ -140,17 +102,6 @@ namespace Registration.Data.Migrations
                     b.Property<int?>("AddressId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("Criado_Em");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text")
-                        .HasColumnName("Criado_Por");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -158,14 +109,6 @@ namespace Registration.Data.Migrations
                     b.Property<string>("RegistrationNumber")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("Atualizado_Em");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("text")
-                        .HasColumnName("Atualizado_Por");
 
                     b.HasKey("Id");
 
