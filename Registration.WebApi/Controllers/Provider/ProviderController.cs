@@ -11,7 +11,7 @@ using Registration.WebApi.Models.Update.Provider;
 namespace Registration.WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("v1/[controller]")]
     [Produces("application/json")]
     public class ProviderController : CoreController
     {

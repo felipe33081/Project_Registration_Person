@@ -10,7 +10,7 @@ using Registration.WebApi.Models.Update.Account;
 namespace Registration.WebApi.Controllers.Account
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("v1/[controller]")]
     [Produces("application/json")]
     public class ProductController : CoreController
     {
